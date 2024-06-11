@@ -1,5 +1,5 @@
-@section('title') ব্যাপারী @endsection
-@section('js') @include('pages.supplier.js') @endsection
+@section('title') ডাল @endsection
+@section('js') @include('pages.product.js') @endsection
 <x-layout>
     <div class="col-sm-4">
         <div class="card">
@@ -13,34 +13,30 @@
                     <input type="text" id="id" name="id" hidden>
                     <div class="input-group input-group-sm flex-nowrap mb-3">
                         <span class="input-group-text col-3 bg-dark text-white">নাম</span>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="ব্যাপারীর নাম">
+                        <input type="text" id="name" name="name" class="form-control" placeholder="ডালের নাম">
                     </div>
                     <div class="input-group input-group-sm flex-nowrap mb-3">
-                        <span class="input-group-text col-3 bg-dark text-white">জেলা</span>
-                        <select name="district_id" id="district_id" class="form-control districtClick">
-                            <option value="">জেলা পছন্দ করুন</option>
-                            @foreach ($districts as $district)
-                                <option data-id="{{$district->id}}" value="{{$district->id}}">{{$district->name}}</option>
+                        <span class="input-group-text col-3 bg-dark text-white">শ্রেণী</span>
+                        <select name="category_id" id="category_id" class="form-control districtClick">
+                            <option value="">শ্রেণী পছন্দ করুন</option>
+                            @foreach ($categories as $category)
+                                <option data-id="{{$category->id}}" value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="input-group input-group-sm flex-nowrap mb-3">
-                        <span class="input-group-text col-3 bg-dark text-white">থানা</span>
-                        <select name="thana_id" id="thana_id" class="form-control">
-                            <option value="">থানা পছন্দ করুন</option>
-                            @foreach ($thanas as $thana)
-                                <option value="{{$thana->id}}">{{$thana->name}}</option>
+                        <span class="input-group-text col-3 bg-dark text-white">ব্যাপারী</span>
+                        <select name="supplier_id" id="supplier_id" class="form-control">
+                            <option value="">ব্যাপারী পছন্দ করুন</option>
+                            @foreach ($suppliers as $supplier)
+                                <option value="{{$supplier->id}}">{{$supplier->name}}</option>
                             @endforeach
 
                         </select>
                     </div>
                     <div class="input-group input-group-sm flex-nowrap mb-3">
-                        <span class="input-group-text col-3 bg-dark text-white">ঠিকানা</span>
-                        <input type="text" id="address" name="address" class="form-control" placeholder="ঠিকানা">
-                    </div>
-                    <div class="input-group input-group-sm flex-nowrap mb-3">
-                        <span class="input-group-text col-3 bg-dark text-white">ফোন</span>
-                        <input type="text" id="phone" name="phone" class="form-control" placeholder="মোবাইল নাম্বার">
+                        <span class="input-group-text col-3 bg-dark text-white">পরিমাণ</span>
+                        <input type="number" id="quantity" name="quantity" class="form-control" placeholder="পরিমাণ">
                     </div>
                     <div class="input-group input-group-sm flex-nowrap mb-3">
                         <span class="input-group-text col-3 bg-dark text-white">ধরন</span>
@@ -78,40 +74,37 @@
                     </thead>
                     <tbody">
 
-                        @forelse ($suppliers as $supplier)
+                        @forelse ($products as $product)
                         <tr>
-                            <td width="5%">{{$numto->bnNum( $supplier->id) }}</td>
-                            <td width="15%">{{ $supplier->name }}</td>
-                            <td width="10%">{{ $supplier->district->name }}</td>
-                            <td width="10%">{{ $supplier->thana->name }}</td>
-                            <td width="15%">{{ $supplier->address }}</td>
-                            <td width="10%">{{ $supplier->phone }}</td>
-                            <td width="10%">{{ $supplier->status == 1 ? "সক্রিয়" : "নিষ্ক্রিয়" }}</td>
-                            <td width="10%">{{ $supplier->balance ? $numto->bnNum($supplier->balance): '00' }}</td>
+                            <td width="5%">{{$numto->bnNum( $product->id) }}</td>
+                            <td width="15%">{{ $product->name }}</td>
+                            <td width="10%">{{ $product->category->name }}</td>
+                            <td width="10%">{{ $product->supplier->name }}</td>
+                            <td width="15%">{{ $product->quantity }}</td>
+                            <td width="10%">{{ $product->status == 1 ? "সক্রিয়" : "নিষ্ক্রিয়" }}</td>
                             <td width="10%">
                                 <a class="btn btn-success btn-sm editBtn"
-                                 data-id="{{ $supplier->id }}"
-                                 data-name="{{ $supplier->name }}"
-                                 data-district_id="{{ $supplier->district_id }}"
-                                 data-thana_id="{{ $supplier->thana_id }}"
-                                 data-address="{{ $supplier->address }}"
-                                 data-phone="{{ $supplier->phone }}"
-                                 data-status="{{ $supplier->status }}"
+                                 data-id="{{ $product->id }}"
+                                 data-name="{{ $product->name }}"
+                                 data-district_id="{{ $product->category_id }}"
+                                 data-thana_id="{{ $product->supplier_id }}"
+                                 data-address="{{ $product->quantity }}"
+                                 data-status="{{ $product->status }}"
                                  >Edit</a>
                                 <a class="btn btn-danger btn-sm delBtn"
-                                 data-id="{{ $supplier->id }}">
+                                 data-id="{{ $product->id }}">
                                  Del</a>
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="8" class="text-center">কোন ব্যাপারী পাওয়া জায়নি</td>
+                            <td colspan="8" class="text-center">কোন ডাল পাওয়া জায়নি</td>
                         </tr>
                         @endforelse
 
                     </tbody>
                 </table>
-                {{$suppliers->links()}}
+                {{$products->links()}}
             </div>
         </div>
     </div>

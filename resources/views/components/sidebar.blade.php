@@ -3,12 +3,12 @@
         <div class="nav">
             <a class="nav-link" href="{{route('info')}}">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                Mill Information
+                প্রতিষ্ঠান
             </a>
 
             <a class="nav-link" href="{{route('supplier')}}">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                Suppliers
+                ব্যাপারী
             </a>
 
             <a class="nav-link" href="{{route('dashboard')}}">
@@ -32,13 +32,13 @@
 
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#products" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                Product
+                পন্য
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
             <div class="collapse" id="products" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html">Category</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">Products</a>
+                    <a class="nav-link" href="{{route('category')}}">ধরন</a>
+                    <a class="nav-link" href="{{ route('product') }}">ডাল</a>
                 </nav>
             </div>
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#expenses" aria-expanded="false" aria-controls="collapseLayouts">
@@ -55,13 +55,13 @@
 
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#incomes" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                Address
+                ঠিকানা
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
             <div class="collapse" id="incomes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="{{ route('district') }}">District</a>
-                    <a class="nav-link" href="{{route('thana')}}">Thana</a>
+                    <a class="nav-link" href="{{ route('district') }}">জেলা</a>
+                    <a class="nav-link" href="{{route('thana')}}">থানা</a>
                 </nav>
             </div>
 
@@ -69,7 +69,7 @@
         </div>
     </div>
     <div class="sb-sidenav-footer">
-        <div class="small">Logged in as:</div>
+        <div class="small">ব্যবহার কারী: </div>
         {{Auth::user()->name}}
     </div>
 </nav>

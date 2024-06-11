@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ThanaController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboadController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\SupplierController;
@@ -47,6 +49,20 @@ Route::middleware('auth')->group(function() {
     Route::get('/supplier/pagination',[SupplierController::class, 'pagination']);
     Route::get('/supplier/search',[SupplierController::class, 'search']);
 
+    Route::get('/category',[CategoryController::class, 'index'])->name('category');
+    Route::post('/category/create',[CategoryController::class, 'create']);
+    Route::put('/category/update/{id}',[CategoryController::class, 'update']);
+    Route::post('/category/delete',[CategoryController::class, 'delete']);
+    Route::get('/category/pagination',[CategoryController::class, 'pagination']);
+    Route::get('/category/search',[CategoryController::class, 'search']);
+
+
+    Route::get('/product',[ProductController::class, 'index'])->name('product');
+    Route::post('/product/create',[ProductController::class, 'create']);
+    Route::put('/product/update/{id}',[ProductController::class, 'update']);
+    Route::post('/product/delete',[ProductController::class, 'delete']);
+    Route::get('/product/pagination',[ProductController::class, 'pagination']);
+    Route::get('/product/search',[ProductController::class, 'search']);
 
 
 });

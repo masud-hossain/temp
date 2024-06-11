@@ -17,6 +17,7 @@ class Supplier extends Model
         'address',
         'phone',
         'balance',
+        'status'
     ];
 
     public function district()

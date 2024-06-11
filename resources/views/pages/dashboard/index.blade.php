@@ -2,6 +2,6 @@
 @section('js') @include('pages.dashboard.js') @endsection
 <x-layout>
 
-Hello
+Hello{{$text = $numto->bnNum(13459); }}
 
 </x-layout>
